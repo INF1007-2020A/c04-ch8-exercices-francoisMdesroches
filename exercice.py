@@ -27,11 +27,27 @@ def exercice2(nomFichierUn, nomFichierDeux):
             nouvLigne = ligne.replace(" ", '   ')
             fichierArrivee.write(nouvLigne)
 
+def exercice3(nomFichierUn, nomFichierDeux):
+    with open(nomFichierUn, encoding='utf-8') as fichierNotes, open(nomFichierDeux, "w", encoding='utf-8') as fichierResultats:
+        les_notes = fichierNotes.readlines()
+        for note in les_notes:
+            calcul = int(note) // 5
+            calcul = calcul * 5
+
+            if calcul < PERCENTAGE_TO_LETTER["F"][0]:
+                fichierResultats.write(str(note.strip("\n")) + " " + str(PERCENTAGE_TO_LETTER["F"][0]) + "\n")
+                break
+
+            for lettre, valeur in PERCENTAGE_TO_LETTER.items():
+                if valeur[0] <= calcul:
+                    fichierResultats.write(str(note.strip("\n")) + " " + lettre + "\n")
+                    break
+
 
 
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
     comparerDeuxFichiers('./exemple.txt', './exemple_2.txt')
     exercice2('./exemple.txt', './exemple_2.txt')
-
+    exercice3('./notes.txt', './lettres.txt')
     pass
