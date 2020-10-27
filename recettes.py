@@ -6,6 +6,16 @@ def add_recipes(dictionnaire):
 
     return dictionnaire
 
+def delete_recipes(recettes):
+    nom = input("Entrez le nom de la recette que vous voulez supprimer \n")
+
+    if nom in recettes:
+        del recettes[nom]
+        print("La recette " + nom + " a été supprimée")
+    else:
+        print("La recette n'était pas dans le livre de recettes")
+
+    return recettes
 
 def print_recipe(ingredients: dict) -> None:
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
